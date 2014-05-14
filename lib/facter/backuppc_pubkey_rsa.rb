@@ -6,6 +6,8 @@ Facter.add('backuppc_pubkey_rsa') do
       '/var/lib/BackupPC/.ssh/id_rsa.pub'
     when 'Debian'
       '/var/lib/backuppc/.ssh/id_rsa.pub'
+    when 'Gentoo'
+      '/var/lib/backuppc/.ssh/id_rsa.pub'
     end
     
     if File.exists?(sshkey_path)

@@ -50,6 +50,26 @@ class backuppc::params {
       $bzip2_path         = '/usr/bin/bzip2'
       $tar_path           = '/bin/gtar'
     }
+    # FIXME the install dir is dependent on package version
+    'Gentoo': {
+      $package            = 'app-backup/backuppc'
+      $service            = 'backuppc'
+      $topdir             = '/var/lib/backuppc'
+      $config_directory   = '/etc/BackupPC'
+      $config             = "${config_directory}/config.pl"
+      $hosts              = "${config_directory}/hosts"
+      $install_directory  = '/usr/share/webapps/backuppc/3.3.0'
+      $cgi_directory      = "${install_directory}/cgi-bin"
+      $cgi_image_dir      = "${install_directory}/image"
+      $cgi_image_dir_url  = '/backuppc/image'
+      $log_directory      = '/var/lib/backuppc/log'
+      # have not tested apache
+      $group_apache       = 'apache'
+      $par_path           = '/usr/bin/par2\' if -x \'/usr/bin/par2'
+      $gzip_path          = '/bin/gzip'
+      $bzip2_path         = '/bin/bzip2'
+      $tar_path           = '/bin/tar'
+    }
     default: {
       fail("Operating system ${::operatingsystem} is not supported by this module")
     }

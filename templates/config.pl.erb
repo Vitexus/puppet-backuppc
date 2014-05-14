@@ -5,6 +5,9 @@
 $ENV{'PATH'} = '/bin:/usr/bin';
 delete @ENV{'IFS', 'CDPATH', 'ENV', 'BASH_ENV'};
 <% end -%>
+<% if @osfamily == 'Gentoo' -%>
+$ENV{'PATH'} = '/bin:/usr/bin';
+<% end -%>
 $Conf{ServerHost} = '<%= @fqdn %>';
 chomp($Conf{ServerHost});
 $Conf{ServerPort} = -1;
