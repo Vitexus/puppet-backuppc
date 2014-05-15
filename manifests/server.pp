@@ -208,6 +208,8 @@ class backuppc::server (
   $apache_allow_from          = 'all',
   $apache_require_ssl         = false,
   $backuppc_password          = '',
+  $ssh_options                = '',
+  $ssh_user                   = 'root',
 ) {
   include backuppc::params
 

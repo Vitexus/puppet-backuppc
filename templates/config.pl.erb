@@ -96,18 +96,18 @@ $Conf{SmbClientRestoreCmd} = '$smbClientPath \\\\$host\\$shareName'
             . ' $I_option -U $userName -E -N -d 1'
             . ' -c tarmode\\ full -Tx -';
 $Conf{TarShareName} = '/';
-$Conf{TarClientCmd} = '$sshPath -q -x -n -l root $host'
+$Conf{TarClientCmd} = '$sshPath <%= @ssh_options %> -q -x -n -l <%= @ssh_user %> $host'
                     . ' env LC_ALL=C $tarPath -c -v -f - -C $shareName+'
                     . ' --totals';
 $Conf{TarFullArgs} = '$fileList+';
 $Conf{TarIncrArgs} = '--newer=$incrDate+ $fileList+';
-$Conf{TarClientRestoreCmd} = '$sshPath -q -x -l root $host'
+$Conf{TarClientRestoreCmd} = '$sshPath <%= @ssh_options %> -q -x -l <%= @ssh_user %> $host'
        . ' env LC_ALL=C $tarPath -x -p --numeric-owner --same-owner'
        . ' -v -f - -C $shareName+';
 $Conf{TarClientPath} = '<%= scope.lookupvar('backuppc::params::tar_path') %>';
 $Conf{RsyncClientPath} = '/usr/bin/rsync';
-$Conf{RsyncClientCmd} = '$sshPath -q -x -l root $host $rsyncPath $argList+';
-$Conf{RsyncClientRestoreCmd} = '$sshPath -q -x -l root $host $rsyncPath $argList+';
+$Conf{RsyncClientCmd} = '$sshPath <%= @ssh_options %> -q -x -l <%= @ssh_user %> $host $rsyncPath $argList+';
+$Conf{RsyncClientRestoreCmd} = '$sshPath <%= @ssh_options %> -q -x -l <%= @ssh_user %> $host $rsyncPath $argList+';
 $Conf{RsyncShareName} = '/';
 $Conf{RsyncdClientPort} = 873;
 $Conf{RsyncdUserName} = '';
