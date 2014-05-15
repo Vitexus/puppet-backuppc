@@ -93,7 +93,7 @@ $Conf{TarShareName} = '<%= @tar_share_name %>';
 <% if @tar_client_cmd -%>
 $Conf{TarClientCmd} = '<%= @tar_client_cmd %>';
 <% elsif not @system_account.empty? -%>
-$Conf{TarClientCmd} = '$sshPath -q -x -n -l <%= @system_account %> $host'
+$Conf{TarClientCmd} = '$sshPath <%= @ssh_options %>  -q -x -n -l <%= @system_account %> $host'
 . ' env LC_ALL=C $tarPath -c -v -f - -C $shareName+'
 . ' --totals';
 <% end -%>
@@ -106,19 +106,19 @@ $Conf{TarIncrArgs} = '<%= @tar_incr_args %>';
 <% if @tar_client_restore_cmd -%>
 $Conf{TarClientRestoreCmd} = '<%= @tar_client_restore_cmd %>';
 <% elsif not @system_account.empty? -%>
-$Conf{TarClientRestoreCmd} = '$sshPath -q -x -l <%= @system_account %> $host'
+$Conf{TarClientRestoreCmd} = '$sshPath <%= @ssh_options %>  -q -x -l <%= @system_account %> $host'
 . ' env LC_ALL=C $tarPath -x -p --numeric-owner --same-owner'
 . ' -v -f - -C $shareName+';
 <% end -%>
 <% if @rsync_client_cmd -%>
 $Conf{RsyncClientCmd} = '<%= @rsync_client_cmd %>';
 <% elsif not @system_account.empty? %>
-$Conf{RsyncClientCmd} = '$sshPath -q -x -l <%= @system_account %> $host $rsyncPath $argList+';
+$Conf{RsyncClientCmd} = '$sshPath <%= @ssh_options %>  -q -x -l <%= @system_account %> $host $rsyncPath $argList+';
 <% end -%>
 <% if @rsync_client_restore_cmd -%>
 $Conf{RsyncClientRestoreCmd} = '<%= @rsync_client_restore_cmd %>';
 <% elsif not @system_account.empty? -%>
-$Conf{RsyncClientRestoreCmd} = '$sshPath -q -x -l <%= @system_account %> $host $rsyncPath $argList+';
+$Conf{RsyncClientRestoreCmd} = '$sshPath <%= @ssh_options %>  -q -x -l <%= @system_account %> $host $rsyncPath $argList+';
 <% end -%>
 <% if @rsync_share_name -%>
 <% if @rsync_share_name.is_a?(Array) -%>
