@@ -256,6 +256,7 @@ class backuppc::client (
   $email_notify_old_backup_days = false,
   $hosts_file_dhcp       = 0,
   $hosts_file_more_users = '',
+  $ssh_options           = '',
     ) {
   include backuppc::params
 
